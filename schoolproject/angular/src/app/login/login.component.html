@@ -1,0 +1,14 @@
+<div class="page">
+  <h1>Welcome, Log into your account</h1>
+
+  <div class="card">
+    <p>It is our great pleasure to have you on board!</p>
+
+    <input type="text" [(ngModel)]="school" placeholder="Enter the name of school" />
+    <input type="password" [(ngModel)]="password" placeholder="Enter Password" />
+
+    <button (click)="onLogin()">Login</button>
+
+    <p>Already have an account? <a href="#">Sign up</a></p>
+  </div>
+</div>
