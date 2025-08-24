@@ -2,6 +2,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+interface Student {
+  fullName: string;
+  email: string;
+  class: string;
+  gender: string;
+  phone: string;
+  password: string;
+}
+
 @Component({
   selector: 'app-add-student-modal',
   standalone: true,
@@ -10,28 +19,43 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./add-student-modal.css']
 })
 export class AddStudentModalComponent {
-  @Output() save = new EventEmitter<any>();
+  @Output() save = new EventEmitter<Student>();
   @Output() close = new EventEmitter<void>();
 
-  student: any = {
+  student: Student = {
     fullName: '',
     email: '',
     class: '',
-    section: '',
     gender: '',
-    password: '',
-    phone: ''
+    phone: '',
+    password: ''
   };
 
+  activeTab: 'manual' | 'csv' = 'manual';
+
+  switchTab(tab: 'manual' | 'csv') {
+    this.activeTab = tab;
+  }
+
   saveStudent() {
-    if (this.student.fullName && this.student.email) {
-      this.save.emit({ ...this.student });
-      this.closeModal();
+    if (this.activeTab === 'manual') {
+      if (this.student.fullName && this.student.email && this.student.class && this.student.gender && this.student.password) {
+        this.save.emit({ ...this.student });
+        this.close.emit();
+        this.resetForm();
+      }
+    } else {
+      // CSV upload logic here (if you want)
+      alert('CSV Import not implemented yet');
     }
+  }
+
+  resetForm() {
+    this.student = { fullName: '', email: '', class: '', gender: '', phone: '', password: '' };
   }
 
   closeModal() {
     this.close.emit();
-    this.student = { fullName: '', email: '', class: '', section: '', gender: '', password: '', phone: '' };
+    this.resetForm();
   }
 }

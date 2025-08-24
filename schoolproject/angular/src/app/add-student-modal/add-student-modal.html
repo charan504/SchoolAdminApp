@@ -1,9 +1,19 @@
 <div class="modal-overlay">
   <div class="modal">
-    <h3>Add Student</h3>
-    <form (ngSubmit)="saveStudent()">
+    <h3>Add Students</h3>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab" [class.active]="activeTab === 'manual'" (click)="switchTab('manual')">Manually</button>
+      <button class="tab" [class.active]="activeTab === 'csv'" (click)="switchTab('csv')">Import CSV</button>
+    </div>
+
+    <!-- Manual Entry Form -->
+    <form *ngIf="activeTab === 'manual'" (ngSubmit)="saveStudent()">
+
+      <!-- Row 1: Name, Class, Gender -->
       <div class="form-row">
-        <input type="text" [(ngModel)]="student.fullName" name="fullName" placeholder="Full Name" required>
+        <input type="text" [(ngModel)]="student.fullName" name="fullName" placeholder="Name" required>
         <select [(ngModel)]="student.class" name="class" required>
           <option value="">Class</option>
           <option>1</option>
@@ -17,19 +27,31 @@
         </select>
       </div>
 
+      <!-- Row 2: Email, Phone -->
       <div class="form-row">
         <input type="email" [(ngModel)]="student.email" name="email" placeholder="Email address" required>
         <input type="text" [(ngModel)]="student.phone" name="phone" placeholder="Phone number">
       </div>
 
+      <!-- Row 3: Password -->
       <div class="form-row">
         <input type="password" [(ngModel)]="student.password" name="password" placeholder="Password" required>
       </div>
 
+      <!-- Actions -->
       <div class="form-actions">
-        <button type="submit" class="btn-add">Add Student</button>
-        <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+        <button type="button" class="btn-outline">+ Add another</button>
+        <button type="submit" class="btn-primary">Add student</button>
       </div>
     </form>
+
+    <!-- CSV Upload -->
+    <div *ngIf="activeTab === 'csv'" class="csv-upload">
+      <p>Upload a CSV file with student data:</p>
+      <input type="file" accept=".csv" />
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+      </div>
+    </div>
   </div>
 </div>
