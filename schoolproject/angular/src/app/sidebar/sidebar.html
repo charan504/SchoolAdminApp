@@ -1,0 +1,59 @@
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="assets/school-logo.png" alt="School Logo">
+      <p>Udemy Inter.school</p>
+    </div>
+
+    <ul class="nav-links">
+      <li>
+        <a routerLink="dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fas fa-home"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a routerLink="teachers" routerLinkActive="active">
+          <i class="fas fa-chalkboard-teacher"></i> Teachers
+        </a>
+      </li>
+      <li>
+        <a routerLink="students" routerLinkActive="active">
+          <i class="fas fa-user-graduate"></i> Students / Classes
+        </a>
+      </li>
+      <li>
+        <a routerLink="billing" routerLinkActive="active">
+          <i class="fas fa-credit-card"></i> Billing
+        </a>
+      </li>
+      <li>
+        <a routerLink="settings" routerLinkActive="active">
+          <i class="fas fa-cog"></i> Settings & Profile
+        </a>
+      </li>
+      <li>
+        <a routerLink="exams" routerLinkActive="active">
+          <i class="fas fa-pen"></i> Exams
+        </a>
+      </li>
+      <li>
+        <a routerLink="features" routerLinkActive="active">
+          <i class="fas fa-star"></i> Features
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="logout" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i> Log out
+      </button>
+    </header>
+
+    <section class="content-body">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

@@ -1,0 +1,154 @@
+.students-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.students-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.students-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Buttons */
+.btn-add,
+.btn-export,
+.btn-cancel {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-add {
+  background-color: #007bff;
+  color: #fff;
+  margin-left: 10px;
+}
+.btn-export {
+  background-color: #f3f4f6;
+  color: #333;
+}
+.btn-cancel {
+  background-color: #e5e7eb;
+  color: #333;
+  margin-left: 10px;
+}
+.btn-cancel:hover {
+  background-color: #d1d5db;
+}
+
+/* Empty State */
+.students-list {
+  text-align: center;
+  margin-top: 60px;
+}
+.empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.empty-subtitle {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Table */
+.student-table {
+  overflow-x: auto;
+}
+.table-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.table-actions select,
+.table-actions input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #fff;
+}
+thead {
+  background-color: #f9fafb;
+}
+th, td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+th {
+  font-weight: 600;
+  color: #444;
+}
+.student-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.student-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Form */
+.form-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.form-row input:focus,
+.form-row select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0,123,255,0.4);
+}
+.form-actions {
+  text-align: right;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,108 @@
+<div class="teachers-page">
+
+  <!-- Header -->
+  <header class="teachers-header">
+    <h2>Teachers</h2>
+    <div class="header-actions" *ngIf="!showForm">
+      <button class="btn-export">Export CSV</button>
+      <button class="btn-add" (click)="addTeacher()">Add Teachers</button>
+    </div>
+  </header>
+
+  <!-- Empty State -->
+  <div *ngIf="!showForm && teachers.length === 0" class="teachers-list">
+    <p class="empty-title">No Teachers at this time</p>
+    <small class="empty-subtitle">Teachers will appear here after they enroll in your school.</small>
+  </div>
+
+  <!-- Teacher List -->
+  <div *ngIf="!showForm && teachers.length > 0" class="teacher-table">
+
+    <!-- 🔍 Filter & Search -->
+    <div class="table-actions">
+      <!-- Class Filter -->
+      <select [(ngModel)]="selectedClass">
+        <option value="">All Classes</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+
+      <!-- ✅ Subject Filter -->
+      <select [(ngModel)]="selectedSubject">
+        <option value="">All Subjects</option>
+        <option *ngFor="let sub of subjects" [value]="sub">{{ sub }}</option>
+      </select>
+
+      <!-- Search Box -->
+      <input type="text" [(ngModel)]="searchText" placeholder="Search teacher..." />
+    </div>
+
+    <!-- Teachers Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Class</th>
+          <th>Gender</th>
+          <th>Subject</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of filteredTeachers()">
+          <td>{{ t.fullName }}</td>
+          <td>{{ t.email }}</td>
+          <td>{{ t.class }}</td>
+          <td>{{ t.gender }}</td>
+          <td>{{ t.subject }}</td>
+          <td>{{ t.phone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add Teacher Form -->
+  <div *ngIf="showForm" class="add-teacher-form">
+    <h3>Add Teachers</h3>
+
+    <form (ngSubmit)="saveTeacher()">
+      <div class="form-row">
+        <input type="text" [(ngModel)]="teacher.fullName" name="fullName" placeholder="Full Name" required>
+      </div>
+
+      <div class="form-row">
+        <input type="email" [(ngModel)]="teacher.email" name="email" placeholder="Email address" required>
+        <select [(ngModel)]="teacher.class" name="class">
+          <option value="">Class</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+        <select [(ngModel)]="teacher.gender" name="gender">
+          <option value="">Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <input type="password" [(ngModel)]="teacher.password" name="password" placeholder="Password" required>
+        <input type="text" [(ngModel)]="teacher.phone" name="phone" placeholder="Phone number">
+      </div>
+
+      <div class="form-row">
+        <!-- ✅ Dynamic Subjects Dropdown -->
+        <select [(ngModel)]="teacher.subject" name="subject">
+          <option value="">Select Subject</option>
+          <option *ngFor="let sub of subjects" [value]="sub">{{ sub }}</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-add">Add Teacher</button>
+      </div>
+    </form>
+  </div>
+</div>

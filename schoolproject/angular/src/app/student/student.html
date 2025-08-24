@@ -1,0 +1,44 @@
+<div class="students-page">
+  <header class="students-header">
+    <h2>Students</h2>
+    <div class="header-actions">
+      <button class="btn-export">Export CSV</button>
+      <button class="btn-add" (click)="addStudent()">Add Student</button>
+    </div>
+  </header>
+
+  <div *ngIf="students.length === 0" class="students-list">
+    <p class="empty-title">No Students at this time</p>
+    <small class="empty-subtitle">Students will appear here after they enroll in your school.</small>
+  </div>
+
+  <table *ngIf="students.length > 0">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Class</th>
+        <th>Section</th>
+        <th>Gender</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of students">
+        <td>{{ s.fullName }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.class }}</td>
+        <td>{{ s.section }}</td>
+        <td>{{ s.gender }}</td>
+        <td>{{ s.phone }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ✅ Reusable modal component -->
+  <app-add-student-modal 
+    *ngIf="showForm"
+    (save)="onSaveStudent($event)" 
+    (close)="onCloseModal()">
+  </app-add-student-modal>
+</div>
