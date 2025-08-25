@@ -6,16 +6,16 @@ import { TeachersComponent } from './teachers/teachers';
 import { StudentsComponent } from './student/student';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent }, // Default route (login)
+  { path: '', component: LoginComponent }, // Default route = login
   {
     path: 'home',
     component: SidebarComponent,
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardHomeComponent },
       { path: 'teachers', component: TeachersComponent },
-      { path: 'students', component: StudentsComponent }      // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      // { path: 'teachers', component: TeachersComponent }, // default when inside /home
-      // { path: 'student', component: StudentsComponent }
+      { path: 'students', component: StudentsComponent }
     ]
-  }
+  },
+  { path: '**', redirectTo: '' } // fallback = login
 ];
